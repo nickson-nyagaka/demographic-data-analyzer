@@ -1,8 +1,14 @@
 import pandas as pd
 
 def calculate_demographic_data(print_data=True):
-    # Load data
-    df = pd.read_csv("adult.data.csv")
+    # Load data from online source (UCI ML Repo or GitHub mirror)
+    url = "https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.data"
+    column_names = [
+        "age", "workclass", "fnlwgt", "education", "education-num", "marital-status",
+        "occupation", "relationship", "race", "sex", "capital-gain", "capital-loss",
+        "hours-per-week", "native-country", "salary"
+    ]
+    df = pd.read_csv(url, header=None, names=column_names, na_values=" ?", skipinitialspace=True)
 
     # 1. How many people of each race
     race_count = df['race'].value_counts()
